@@ -77,6 +77,9 @@ if(WIN32)
     source_group("Source" FILES ${SPVREMAP_SOURCES} ${SPVREMAP_HEADERS})
 endif(WIN32)
 
+include("../LibCombine.cmake")
+combine_static_lib(SPIRV_Compiler SPIRV)
+
 if(ENABLE_GLSLANG_INSTALL)
     if(BUILD_SHARED_LIBS)
         if (ENABLE_SPVREMAPPER)
