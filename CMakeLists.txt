@@ -32,6 +32,12 @@ option(ENABLE_HLSL "Enables HLSL input support" ON)
 
 option(ENABLE_OPT "Enables spirv-opt capability if present" ON)
 
+option(ENABLE_COMBINED_LIB "Export combined lib containing all SPIRV Compiler requirements" OFF)
+if(BUILD_SHARED_LIBS)
+    message(WARNING "ENABLE_COMBINED_LIB requires static library linking. Resuming setting disabled.")
+    set(ENABLE_COMBINED_LIB OFF)
+endif()
+
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT AND WIN32)
     set(CMAKE_INSTALL_PREFIX "install" CACHE STRING "..." FORCE)
 endif()
@@ -133,7 +139,7 @@ endif()
 
 add_subdirectory(glslang)
 add_subdirectory(OGLCompilersDLL)
-if(ENABLE_GLSLANG_BINARIES)
+if(ENABLE_GLSLANG_BINARIES OR ENABLE_COMBINED_LIB)
     add_subdirectory(StandAlone)
 endif()
 add_subdirectory(SPIRV)
