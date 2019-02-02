@@ -147,3 +147,18 @@ if(ENABLE_HLSL)
     add_subdirectory(hlsl)
 endif(ENABLE_HLSL)
 add_subdirectory(gtests)
+
+
+if(ENABLE_COMBINED_LIB)
+    set(DEFINITION_EXPORT_FILE "${CMAKE_CURRENT_BINARY_DIR}/BuildDefines.h")
+    file(WRITE ${DEFINITION_EXPORT_FILE} "// Generated definitions for last glslang build.\n")
+    get_directory_property(Defines DIRECTORY ${CMAKE_SOURCE_DIR} COMPILE_DEFINITIONS )
+    foreach( d ${Defines} )
+        # Skip this defintion because of the generic name. We can since its not used in any headers at the time.
+        string(FIND "${d}" "ENABLE_OPT" notFound)
+        if(notFound)
+            string(REPLACE "=" " " outDef "${d}")
+            file(APPEND ${DEFINITION_EXPORT_FILE} "#define " ${outDef} "\n")
+        endif(notFound)
+    endforeach()
+endif(ENABLE_COMBINED_LIB)
