@@ -27,6 +27,7 @@ cmake --build . --config Release --target SPIRV_Compiler_genfile || { echo >&2 "
 cp -v spirv/Release/SPIRV_Compiler.lib ${RELATIVE_OUTPUT_PATH}Libs/Release
 
 cp BuildDefines.h ${RELATIVE_OUTPUT_PATH}Includes/glslang/
+cp ../libexport/SPIRV_Compiler.h ${RELATIVE_OUTPUT_PATH}Includes/glslang/
 
 cp -r -v ../spirv/*.h ${RELATIVE_OUTPUT_PATH}Includes/glslang/spirv/
 cp -r -v ../StandAlone/*.h ${RELATIVE_OUTPUT_PATH}Includes/glslang/StandAlone/
