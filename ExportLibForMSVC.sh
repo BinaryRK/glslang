@@ -1,6 +1,17 @@
 # Path to export Libs and Includes
 OUTPUT_PATH="../SPIRV_Compiler/"
 
+if [ $# -eq 1 ]; then
+  case "$1" in 
+  */)
+    OUTPUT_PATH="$1"
+  ;;
+  *)
+    OUTPUT_PATH="$1/"
+  ;;
+  esac
+fi
+
 # Platform to build for
 BUILD_PLATFORM="x64"
 
