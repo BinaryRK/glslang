@@ -73,17 +73,15 @@ else()
 endif(ENABLE_OPT)
 
 if (ENABLE_COMBINED_LIB)
-	include("../LibCombine.cmake")
-	target_link_libraries(SPIRV glslang-default-resource-limits)
-	combine_static_lib(SPIRV_Compiler SPIRV)
+    include("../LibCombine.cmake")
+    target_link_libraries(SPIRV glslang-default-resource-limits)
+    combine_static_lib(SPIRV_Compiler SPIRV)
 endif(ENABLE_COMBINED_LIB)
-	
 
 if(WIN32)
     source_group("Source" FILES ${SOURCES} ${HEADERS})
     source_group("Source" FILES ${SPVREMAP_SOURCES} ${SPVREMAP_HEADERS})
 endif(WIN32)
-
 
 if(ENABLE_GLSLANG_INSTALL)
     if(BUILD_SHARED_LIBS)

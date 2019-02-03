@@ -148,10 +148,11 @@ if(ENABLE_HLSL)
 endif(ENABLE_HLSL)
 add_subdirectory(gtests)
 
-
 if(ENABLE_COMBINED_LIB)
     set(DEFINITION_EXPORT_FILE "${CMAKE_CURRENT_BINARY_DIR}/BuildDefines.h")
-    file(WRITE ${DEFINITION_EXPORT_FILE} "// Generated definitions for last glslang build.\n")
+    # TODO: cleanup these auto generated definitions
+    file(WRITE ${DEFINITION_EXPORT_FILE} "// Generated definitions for last glslang build.\n\
+        // TODO: Check if already defined. Cleanup the definitions if required after including the correct headers")
     get_directory_property(Defines DIRECTORY ${CMAKE_SOURCE_DIR} COMPILE_DEFINITIONS )
     foreach( d ${Defines} )
         # Skip this defintion because of the generic name. We can since its not used in any headers at the time.
