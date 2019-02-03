@@ -19,6 +19,8 @@ if [ -d "build" ]; then
   rm build -rf || { echo >&2 " failed. Some file could be in use."; exit 1; }
 fi
 
+mkdir -p build
+
 # You can add or edit more cmake options for glslang building. Not all combinations are valid. Check for CMake erros.
 # You can also add static CRT for msvc. Check CMake for the required options.
 cmake -S . -B build -DCMAKE_GENERATOR_PLATFORM=${BUILD_PLATFORM} -DENABLE_HLSL=OFF -DENABLE_COMBINED_LIB=ON -DBUILD_TESTING=OFF -DENABLE_GLSLANG_BINARIES=OFF -DENABLE_OPT=OFF -DENABLE_SPVREMAPPER=OFF || { echo >&2 " failed."; exit 1; }
